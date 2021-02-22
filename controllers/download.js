@@ -7,19 +7,23 @@ function get_download(req, res, next) {
 
   const file_path = path.join(dir, "files", filename);
 
-  res.download(file_path, "CV.pdf", function (err) {
-    if (err) {
-      // Handle error, but keep in mind the response may be partially-sent
-      // so check res.headersSent
-      if (res.headersSent) {
-        return console.log(res.headersSent);
-      } else {
-        return res.status(500).json({ message: "Downloaded unsuccessfully", errors: err });
-      }
-    } else {
-      return res.status(200).json({ message: `Downloaded ${filename} successfully`, errors: false });
-    }
-  });
+  return res.download(file_path, "CV.pdf");
+
+  // res.download(file_path, "CV.pdf", function (err) {
+  //   console.log(req.headers);
+
+  //   if (err) {
+  //     // Handle error, but keep in mind the response may be partially-sent
+  //     // so check res.headersSent
+  //     if (res.headersSent) {
+  //       return console.log(res.headersSent);
+  //     } else {
+  //       return res.status(500).json({ message: "Downloaded unsuccessfully", errors: err });
+  //     }
+  //   } else {
+  //     return res.status(200).json({ message: `Downloaded ${filename} successfully`, errors: false });
+  //   }
+  // });
 }
 
 module.exports = {

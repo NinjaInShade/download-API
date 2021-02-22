@@ -7,7 +7,6 @@ const app = express();
 
 // Middlewares
 app.use(cors());
-app.options("*", cors());
 
 app.get("/:filename", get_download);
 
