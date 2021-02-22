@@ -6,7 +6,12 @@ const { get_download } = require("./controllers/download");
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    optionsSuccessStatus: 200,
+  })
+);
 
 app.get("/:filename", get_download);
 
